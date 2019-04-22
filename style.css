@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.bannerMobile {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width : 100%;
+    height : 100px;
+    background-color: dimgray;
+    color : white;
+    align-items: center;
+}
+
+.tittle {
+    margin: auto;
+}
+
+.beginQuiz {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
+    top: 150px;
+    width: 75%;
+    height: 400px;
+    background-color: grey;
+    margin: auto;
+    justify-content: space-evenly;
+    padding: 10%;
+}
+
+.beginButton {
+    width: 100%;
+    height: 50px;
+    max-width: 500px;
+    min-height: 50px;
+}
+
+.questionsContainer {
+    display: none;
+    margin-top: 500px;
+}
