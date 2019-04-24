@@ -1,6 +1,7 @@
 ///We define the global variable that will hold the question number///
 
 var questionIndex = 0;
+var score = 0;
 
 //When the start button is clicked we remove the initial section to start the quiz and //
 //we show the section containing the questions//
@@ -101,20 +102,34 @@ function correctAnswerTemplate() {
 function handleSubmitAnswerButton() {
     $('#mainContainer').on('click', '.submitAnswerButton', function submitButtonClicked(event) {
         event.preventDefault();
-        console.log("submit button clicked");
+        /*console.log("submit button clicked");*/
         $('.questionAndAnswersContainer').css('display','none');
-        $(`.feedbackContainer`).show().append(wrongAnswerTemplate);
+        const submittedAnswer = $('input:checked').parent().index();
+        console.log(submittedAnswer);
+        checkIfCorrectOrWrong(submittedAnswer, questionsAnswers[questionIndex]);
         });
+}
+
+////here we will check if the answer is correct////
+function checkIfCorrectOrWrong(answer, compareValues) {
+    if (answer + 1 === compareValues.ans.correct) {
+        score ++;
+        questionIndex ++;
+        correctAnswerFeedback();
+    } else {
+        questionIndex ++;
+        wrongAnswerFeedback();
+    }
 }
 
 ////this is what we will display in case the answer was wrong////
 function wrongAnswerFeedback() {
-
+    $(`.feedbackContainer`).show().html(wrongAnswerTemplate);
 }
 
 ////this is what we will display in case the answer was correct////
 function correctAnswerFeedback() {
-
+    $(`.feedbackContainer`).show().html(correctAnswerTemplate);
 }
 
 ////with this we will handle the score after submiting the answer////
@@ -127,6 +142,7 @@ function initQuizApp() {
     showQuestionsScreen();
     questionTemplate();
     handleSubmitAnswerButton();
+    checkIfCorrectOrWrong();
     wrongAnswerFeedback();
     wrongAnswerTemplate();
     correctAnswerFeedback();
