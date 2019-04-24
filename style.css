@@ -100,25 +100,32 @@ body {
     font-size: 20px;
   }
 
-  #wrongFeedbackContainer {
+  #wrongFeedbackContainer, #correctFeedbackContainer {
       display: flex;
       flex-flow: column;
       align-items: center;
       justify-content: center;
   }
 
-  #wrongFeedbackText {
+  #wrongFeedbackForm, #correctFeedbackForm {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+  }
+
+  #wrongFeedbackText, #correctFeedbackText {
       margin-top: 150px;
       margin-bottom: 20px;
       font-size: 20px;
   }
 
-  #wrongFeedbackImage {
+  #wrongFeedbackImage, #correctFeedbackImage {
       width: 60%;
       max-width: 500px;
   }
 
-  #wrongFeedbackContinueButton {
+  #wrongFeedbackContinueButton, #correctFeedbackContinueButton {
     width: 40%;
     max-width: 400px;
     height: 50px;

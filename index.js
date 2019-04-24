@@ -9,9 +9,9 @@ function showQuestionsScreen() {
         console.log("beginButton clicked");
     event.preventDefault();   
     $('.beginQuiz').remove();
-    $('.questionAndAnswersContainer')
-        .show()
-        .append(questionTemplate(questionsAnswers[questionIndex]));
+    $('.questionAndAnswersContainer').show();
+    renderQuestionAndAnswers();
+    handleSubmitAnswerButton();
 });
 }
 
@@ -27,7 +27,12 @@ const questionsAnswers = [
             correct:2
         }
     }
-] 
+]
+
+///Here we render the questions ///
+function renderQuestionAndAnswers() {
+    $('.questionAndAnswersContainer').html(questionTemplate(questionsAnswers[questionIndex]));
+}
 
 ///this is the html inserted for the mobile version of the quiz///
 function questionTemplate(question) {
@@ -70,9 +75,11 @@ function questionTemplate(question) {
 function wrongAnswerTemplate() {
     return `
     <div id="wrongFeedbackContainer">
-        <span id="wrongFeedbackText">Wrong answer</span>
-        <img id="wrongFeedbackImage" src="https://media.giphy.com/media/iZCd5DtKEiMq4/giphy.gif" alt="tumbling Wario in defeat">
-        <button id="wrongFeedbackContinueButton">Continue</button>
+        <form id="wrongFeedbackForm">
+            <span id="wrongFeedbackText">Wrong answer</span>
+            <img id="wrongFeedbackImage" src="https://media.giphy.com/media/iZCd5DtKEiMq4/giphy.gif" alt="tumbling Wario in defeat">
+            <button id="wrongFeedbackContinueButton">Continue</button>
+        </form>
     </div>
     `
 }
@@ -80,17 +87,23 @@ function wrongAnswerTemplate() {
 ////this function will handle the HTML inserted for the correct answer feedback////
 function correctAnswerTemplate() {
     return `
-    
+    <div id="correctFeedbackContainer">
+        <form id="correctFeedbackForm">
+            <span id="correctFeedbackText">Correct!</span>
+            <img id="correctFeedbackImage" src="https://media.giphy.com/media/6m9oKO7A1k6Os/giphy.gif" alt="dancing karate guy">
+            <button id="correctFeedbackContinueButton">Continue</button>
+        </form>
+    </div>
     `
 }
 
 ////this function will handle the submit answer button being activated////
 function handleSubmitAnswerButton() {
     $('#mainContainer').on('click', '.submitAnswerButton', function submitButtonClicked(event) {
-            event.preventDefault();
-            console.log("submit button clicked");
-            $('.questionAndAnswersContainer').css('display','none');
-            /*$(`.feedbackContainer`).show().append(wrongAnswerTemplate);*/
+        event.preventDefault();
+        console.log("submit button clicked");
+        $('.questionAndAnswersContainer').css('display','none');
+        $(`.feedbackContainer`).show().append(wrongAnswerTemplate);
         });
 }
 
@@ -110,6 +123,7 @@ function handleScore() {
 }
 
 function initQuizApp() {
+    renderQuestionAndAnswers();
     showQuestionsScreen();
     questionTemplate();
     handleSubmitAnswerButton();
