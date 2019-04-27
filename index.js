@@ -1,6 +1,7 @@
 ///We define the global variable that will hold the question number///
 
 var questionIndex = 0;
+var questionNumber = 1;
 var score = 0;
 
 //When the start button is clicked we remove the initial section to start the quiz and //
@@ -9,10 +10,9 @@ function showQuestionsScreen() {
     $('.beginQuiz').on('click', '#beginButton', function beginButtonClicked(event) {
         console.log("beginButton clicked");
     event.preventDefault();   
-    $('.beginQuiz').remove();
+    $('.beginQuiz').hide();
     $('.questionAndAnswersContainer').show();
     renderQuestionAndAnswers();
-    handleSubmitAnswerButton();
 });
 }
 
@@ -162,7 +162,7 @@ function questionTemplate(question) {
                     <button type="submit" class="submitAnswerButton">Submit</button>
 
                     <div class="scoreAndQuestionNumberDisplay">
-                        <span>Question 1/10</span>
+                        <span>Question ${questionIndex+1}/10</span>
                         <span>Score ${score}/10</span>
                     </div>
                 </fieldset>
@@ -177,6 +177,7 @@ function wrongAnswerTemplate() {
     <div id="wrongFeedbackContainer">
         <form id="wrongFeedbackForm">
             <span id="wrongFeedbackText">Wrong answer</span>
+            <span>The correct answer was</span>
             <img id="wrongFeedbackImage" src="https://media.giphy.com/media/iZCd5DtKEiMq4/giphy.gif" alt="tumbling Wario in defeat">
             <button class="continueButton">Continue</button>
         </form>
@@ -199,11 +200,11 @@ function correctAnswerTemplate() {
 
 ////this function will handle the submit answer button being activated////
 function handleSubmitAnswerButton() {
-    $('#mainContainer').on('click', '.submitAnswerButton', function submitButtonClicked(event) {
+    $('.questionAndAnswersContainer').on('submit', 'form', function submitButtonClicked(event) {
         event.preventDefault();
         /*console.log("submit button clicked");*/
-        $('.questionAndAnswersContainer').css('display','none');
-        const submittedAnswer = $('input:checked').parent().index();
+        $('.questionAndAnswersContainer').hide();
+        const submittedAnswer = $('input:checked').closest('label').index();
         console.log(submittedAnswer);
         checkIfCorrectOrWrong(submittedAnswer, questionsAnswers[questionIndex]);
         });
@@ -228,7 +229,7 @@ function handleNextButton() {
         event.preventDefault();
         console.log("Button Next Clicked");
         renderQuestionAndAnswers();
-        $('.feedbackContainer').remove();
+        $('.feedbackContainer').hide();
         $('.questionAndAnswersContainer').css('display','flex');
     });
 }
@@ -249,16 +250,9 @@ function handleScore() {
 }
 
 function initQuizApp() {
-    renderQuestionAndAnswers();
     showQuestionsScreen();
-    questionTemplate();
     handleSubmitAnswerButton();
-    checkIfCorrectOrWrong();
     handleNextButton();
-    wrongAnswerFeedback();
-    wrongAnswerTemplate();
-    correctAnswerFeedback();
-    correctAnswerTemplate();
     handleScore();
 }
 
