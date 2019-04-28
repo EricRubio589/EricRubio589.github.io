@@ -13,6 +13,7 @@ function showQuestionsScreen() {
     $('.beginQuiz').hide();
     $('.questionAndAnswersContainer').show();
     renderQuestionAndAnswers();
+    renderScoreAndQuestionBanner();
 });
 }
 
@@ -114,8 +115,8 @@ function questionTemplate(question) {
                     <button type="submit" class="submitAnswerButton">Submit</button>
 
                     <div class="scoreAndQuestionNumberDisplay">
-                        <span>Question ${questionIndex+1}/10</span>
-                        <span>Score ${score}/10</span>
+                        <span class="displayQuestionInBody">Question ${questionIndex+1}/10</span>
+                        <span class="displayScoreInBody">Score ${score}/10</span>
                     </div>
                 </fieldset>
             </form>
@@ -152,7 +153,19 @@ function correctAnswerTemplate() {
     `
 }
 
-function finalScoreTemplate() {
+function goodFinalScoreTemplate() {
+    return `
+    <div id="correctFeedbackContainer">
+        <form id="correctFeedbackForm">
+            <span id="correctFeedbackText">Good Job! Your Final Score Was ${score}/10 </span>
+            <img id="correctFeedbackImage" src="https://media.giphy.com/media/Rs2iAnfEImXIs/giphy.gif" alt="Duck Hunt dog showing you the ducks you hit">
+            <button type="submit" class="restartButton">Restart quiz</button>
+        </form>
+    </div>
+    `
+}
+
+function badFinalScoreTemplate() {
     return `
     <div id="correctFeedbackContainer">
         <form id="correctFeedbackForm">
@@ -164,6 +177,11 @@ function finalScoreTemplate() {
     `
 }
 
+function scoreAndQuestionBannerTemplate() {
+    return `<span class="displayQuestionInBanner">Question ${questionIndex+1}/10</span>
+    <span class="displayScoreInBanner">Score ${score}/10</span>`
+}
+
 ////this function will handle the submit answer button being activated////
 function handleSubmitAnswerButton() {
     $('.questionAndAnswersContainer').on('submit', 'form', function submitButtonClicked(event) {
@@ -172,6 +190,11 @@ function handleSubmitAnswerButton() {
         const submittedAnswer = $('input:checked').closest('label').index();
         console.log(submittedAnswer);
         checkIfCorrectOrWrong(submittedAnswer, questionsAnswers[questionIndex]);
+        if ($(window).width() > 499) {
+            $('.displayQuestionInBody').hide();
+            $('.displayScoreInBody').hide();
+            renderScoreAndQuestionBanner();
+        }
         });
 }
 
@@ -203,6 +226,12 @@ function handleNextButton() {
     });
 }
 
+///Here we will render the score and quesiton number in the banner ///
+function renderScoreAndQuestionBanner() {
+    /*$(`.scoreAndQuestionBannerDisplay`).show();*/
+    $(`.scoreAndQuestionBannerDisplay`).html(scoreAndQuestionBannerTemplate);
+}
+
 ////this is what we will display in case the answer was wrong////
 function wrongAnswerFeedback() {
     $(`.feedbackContainer`).show().html(wrongAnswerTemplate);
@@ -216,7 +245,11 @@ function correctAnswerFeedback() {
 ////with this we will handle the score after submiting the answer////
 function handleFinalScore() {
     $('.feedbackContainer').hide();
-    $('.feedbackContainer').show().html(finalScoreTemplate);
+    if (score > 5) {
+        $('.feedbackContainer').show().html(goodFinalScoreTemplate);
+    } else {
+        $('.feedbackContainer').show().html(badFinalScoreTemplate)
+    }
 }
 
 function initQuizApp() {
