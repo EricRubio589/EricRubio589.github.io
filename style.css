@@ -3,9 +3,13 @@
 }
 
 body {
-    background-color: lightgray;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
-
+/*
 .bannerMobile {
     display:flex;
     align-items: center;
@@ -14,23 +18,40 @@ body {
     width: 100%;
     height: 100px;
   }
+*/
 
-.tittle {
-    margin: auto;
+#beginQuizImage {
+  width: 60%;
 }
 
+.header {
+  display: flex;
+}
+
+.bannerMobile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100px;
+  background-color: rgb(0, 255, 127);
+  font-family: 'Audiowide', cursive;
+}
 .beginQuiz {
     display: flex;
     position: relative;
     flex-direction: column;
     align-items: center;
-    font-size: 15px;
-    top: 150px;
+    margin: 10%;
+    font-size: 80%;
     width: 75%;
     height: 400px;
-    background-color: grey;
-    margin: auto;
-    justify-content: space-evenly;
+    background-color:rgb(0,128,64);
+    font-family: 'Press Start 2P', cursive;
+    justify-content: center;
     padding: 10%;
 }
 
@@ -39,33 +60,37 @@ body {
     height: 50px;
     max-width: 500px;
     min-height: 50px;
+    background-color: rgb(0, 255, 127);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 60%;
 }
 
 .questionAndAnswersContainer {
     display: none;
-}
-/*
-#questionContainer {
-    display: flex;
-    height: 120px;
-    width: 100%;
-    margin: auto;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-  }*/
+    margin-top: 10px;
+    width: 90%;
+}
 
 .answersContainer {
     display: flex;
-    background-color: grey;
+    flex-direction: column;
+    background-color: rgb(0,128,64);
     width: 100%;
+    height: 400px;
+    align-items: center;
+    justify-content: center;
   }
 
 .answerBox {
     display: flex;
     text-align: center;
-    background-color: lightgray;
-    height: 100px;
+    background-color: black;
+    color: rgb(0, 255, 127);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 60%;
+    height: 17%;
     width: 75%;
     margin: auto;
     margin-top: 5px;
@@ -76,20 +101,37 @@ body {
 
   .questionBox {
     display: flex;
-    height: 120px;
+    height: 50%;
     width: 100%;
     margin: auto;
+    padding: 10px;
     align-items: center;
     justify-content: center;
     font-size: 20px;
   }
 
+  .questionText {
+    display: flex;
+    color: rgb(0, 255, 127);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 70%;
+    width: 80%;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
   .submitAnswerButton {
+    display: flex;
     width: 60%;
-    height: 50px;
+    height: 10%;
+    background-color:  rgb(0, 255, 127);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 60%;
+    justify-content: center;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15px;
   }
 
   .scoreAndQuestionNumberDisplay {
@@ -97,7 +139,9 @@ body {
     align-items: center;
     justify-content: space-evenly;
     margin-top: 15px;
-    font-size: 20px;
+    font-size: 60%;
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(0, 255, 127);
   }
 
   #wrongFeedbackContainer, #correctFeedbackContainer {
@@ -115,14 +159,23 @@ body {
   }
 
   #wrongFeedbackText, #correctFeedbackText {
-      margin-top: 150px;
-      margin-bottom: 20px;
-      font-size: 20px;
+      margin: 20px;
+      font-size: 80%;
+      color: rgb(0, 255, 127);
+      font-family: 'Press Start 2P', cursive;
   }
 
   #wrongFeedbackImage, #correctFeedbackImage {
-      width: 60%;
+      width: 240px;
       max-width: 500px;
+  }
+
+  #showCorrectAnswerText {
+    margin-bottom: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    color: rgb(0, 255, 127);
+    font-family: 'Press Start 2P', cursive;
   }
 
   .continueButton {
@@ -132,8 +185,65 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
+    font-family: 'Press Start 2P', cursive;
+    background-color: rgb(0, 255, 127);
+    font-size: 60%;
+  }
+
+  .restartButton {
+    width: 40%;
+    max-width: 400px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    background-color: rgb(0, 255, 127);
+    font-family: 'Press Start 2P', cursive;
   }
 
   .feedbackContainer {
       display: none;
+  }
+
+  #mainContainer {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #questionFormContainer {
+    display: flex;
+    height: 80%;
+  }
+
+  .questionForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  label:hover, label:focus {
+    background-color: rgb(0, 255, 127);
+    color: black;
+  }
+
+  input:checked {
+    border: 5px solid rgb(0,255,127);
+  }
+
+  input:hover {
+    border: 5px solid black;
+  }
+
+  input[type=radio] {
+    flex: 0 0 auto;
+    margin-right: 10px;
+  }
+
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }

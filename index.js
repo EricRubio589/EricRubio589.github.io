@@ -1,4 +1,4 @@
-///We define the global variable that will hold the question number///
+///We define the global variable that will hold the question index///
 
 var questionIndex = 0;
 var questionNumber = 1;
@@ -19,113 +19,65 @@ function showQuestionsScreen() {
 ///this is the array of objects containing the questions ///
 const questionsAnswers = [
     {
-        toRespond:'What video game is widely considered the worst video game of all times and partially credited as responsible for the video game industry crash in 1983?',
-        ans:{
-            one:'E.T. the Extra-Terrestrial',
-            two:'Superman',
-            three:'Dr. Jekyll and Mr. Hide',
-            four:'The Cheetahmen',
-            correct:1
-        }
+        toRespond:`What video game is widely considered the worst video game of all times and partially credited as
+         responsible for the video game industry crash in 1983?`,
+        ans:['E.T. the Extra-Terrestrial','Superman','Dr. Jekyll and Mr. Hide','The Cheetahmen',1]
     },
 
     {
-        toRespond:'In 1991 the first console war took place between which 2 video game consoles?',
-        ans:{
-            one:'Nintendo Entertainment System and Sega Master System',
-            two:'Playstation and Nintendo 64',
-            three:'Atari 2600 and Mattel Intellivision',
-            four:'Super Nintendo Entertainment System and Sega Genesis',
-            correct:4
-        }
+        toRespond:`In 1991 the first console war took place between which 2 video game consoles?`,
+        ans:['Nintendo Entertainment System and Sega Master System','Playstation and Nintendo 64',
+        'Atari 2600 and Mattel Intellivision','Super Nintendo Entertainment System and Sega Genesis',4]
     },
 
     {
-        toRespond:'This Iconic character debuted in the arcade game Donkey Kong in 1981 and was originally called Jumpman.',
-        ans:{
-            one:'Sonic',
-            two:'Donkey Kong',
-            three:'Mario',
-            four:'Link',
-            correct:3
-        }
+        toRespond:`This Iconic character debuted in the arcade game Donkey Kong in 1981 and was originally called Jumpman.`,
+        ans:['Sonic','Donkey Kong','Mario','Link',3]
     },
 
     {
-        toRespond:'This nonlinear game utilized a “rock paper scissors” mechanic that allowed the player to select which stage to play based on previous power-ups obtained granting an easier battle with said’s level final boss.',
-        ans:{
-            one:'The Legend of Zelda',
-            two:'Megaman',
-            three:'Rock paper scissors',
-            four:'Teenage Mutant Ninja Turtles',
-            correct:2
-        }
+        toRespond:`This nonlinear game utilized a “rock paper scissors” mechanic that allowed the player to select which
+         stage to play based on previous power-ups obtained granting an easier battle with said’s level final boss.`,
+        ans:['The Legend of Zelda','Megaman','Rock paper scissors','Teenage Mutant Ninja Turtles',2]
     },
 
     {
-        toRespond:'This 1986 video game combines the platforming of Super Mario Bros. and the adventure of The Legend of Zelda with a dark science fiction atmosphere and greater emphasis on nonlinear gameplay.',
-        ans:{
-            one:'Metroid',
-            two:'DuckTales',
-            three:'Bionic Commando',
-            four:'Castlevania',
-            correct:1
-        }
+        toRespond:`This 1986 video game combines the platforming of Super Mario Bros. and the adventure of The Legend
+         of Zelda with a dark science fiction atmosphere and greater emphasis on nonlinear gameplay.`,
+        ans:['Metroid','DuckTales','Bionic Commando','Castlevania',1]
     },
 
     {
-        toRespond:'IT’S DANGEROUS TO GO ALONE! TAKE THIS” are the famous words said by an old man to this game’s main character as he hands him a sword to commence his quest.',
-        ans:{
-            one:'The Legend Of Zelda',
-            two:'Sword Master',
-            three:'ActRaiser',
-            four:'Prince of Persia',
-            correct:1
-        }
+        toRespond:`IT’S DANGEROUS TO GO ALONE! TAKE THIS” are the famous words said by an old man to this game’s main
+         character as he hands him a sword to commence his quest.`,
+        ans:['The Legend Of Zelda','Sword Master','ActRaiser','Prince of Persia',1]
     },
 
     {
-        toRespond:'In this game the main character (Simon Belmont) utilizes a magic whip as his primary (but not only) weapon to defeat Count Dracula and other mythical creatures.',
-        ans:{
-            one:`Bram Stoker's Dracula`,
-            two:'Castlevania',
-            three:'Monster Party',
-            four:'ActRaiser',
-            correct:2
-        }
+        toRespond:`In this game the main character (Simon Belmont) utilizes a magic whip as his primary (but not only)
+         weapon to defeat Count Dracula and other mythical creatures.`,
+        ans:[`Bram Stoker's Dracula`,'Castlevania','Monster Party','ActRaiser',2]
     },
 
     {
-        toRespond:'Bill Rizer and Lance Bean, are sent to the Galuga archipelago to destroy the enemy forces and uncover the true nature of Red Falcon, the alien entity controlling them in this game that utilizes a variety of playing perspectives.',
-        ans:{
-            one:'Bionic Commando',
-            two:'Final Fantasy',
-            three:`Ghosts 'n Goblins`,
-            four:'Double Dragon',
-            correct:4
-        }
+        toRespond:`Bill Rizer and Lance Bean, are sent to the Galuga archipelago to destroy the enemy forces and uncover
+         the true nature of Red Falcon, the alien entity controlling them in this game that utilizes a variety of playing 
+         perspectives.`,
+        ans:['Bionic Commando','Final Fantasy',`Ghosts 'n Goblins`,'Contra',4]
     },
 
     {
-        toRespond:'This game is played from a first-person perspective and requires the NES Zapper light gun, which the player aims and fires at the screen. first released in Japan in April 1984, and was released as a launch game for the NES in North America in October 1985.',
-        ans:{
-            one:'Gumshoe',
-            two:'Laser Invasion',
-            three:'Barker Bills Trick Shooting',
-            four:'Duck Hunt',
-            correct:4
-        }
+        toRespond:`This game is played from a first-person perspective and requires the NES Zapper light gun, which the 
+        player aims and fires at the screen. first released in Japan in April 1984, and was released as a launch game 
+        for the NES in North America in October 1985.`,
+        ans:['Gumshoe','Laser Invasion','Barker Bills Trick Shooting','Duck Hunt',4]
     },
 
     {
-        toRespond:`Combat in this game is menu-based: the player selects an action from a list of options such as Attack, Magic, and Item. Battles are turn-based and continue until either side flees or is defeated. If the player's party wins, each character will gain experience and Gil (The game’s currency).`,
-        ans:{
-            one:'Final Fantasy',
-            two:'Dungeons and Dragons',
-            three:'EarthBound',
-            four:'Dragon Warrior',
-            correct:1
-        }
+        toRespond:`Combat in this game is menu-based: the player selects an action from a list of options such as Attack, 
+        Magic, and Item. Battles are turn-based and continue until either side flees or is defeated. If the player's party 
+        wins, each character will gain experience and Gil (The game’s currency).`,
+        ans:['Final Fantasy','Dungeons and Dragons','EarthBound','Dragon Warrior',1]
     }
 ]
 
@@ -145,19 +97,19 @@ function questionTemplate(question) {
                 <fieldset class="answersContainer">
                     <label class="answerBox">
                         <input class="answers" type="radio" name="answer" required>
-                        <span>${question.ans.one}</span>
+                        <span>${question.ans[0]}</span>
                     </label>
                     <label class="answerBox">
                             <input class="answers" type="radio" name="answer" required>
-                            <span>${question.ans.two}</span>
+                            <span>${question.ans[1]}</span>
                     </label>
                     <label class="answerBox">
                             <input class="answers" type="radio" name="answer" required>
-                            <span>${question.ans.three}</span>
+                            <span>${question.ans[2]}</span>
                     </label>
                     <label class="answerBox">
                             <input class="answers" type="radio" name="answer" required>
-                            <span>${question.ans.four}</span>
+                            <span>${question.ans[3]}</span>
                     </label>
                     <button type="submit" class="submitAnswerButton">Submit</button>
 
@@ -173,11 +125,13 @@ function questionTemplate(question) {
 
 ////this function will handle the HTML inserted for the wrong answer feedback////
 function wrongAnswerTemplate() {
+    var answerIndex = questionsAnswers[questionIndex-1].ans[4];
+    var correctAnswerText = questionsAnswers[questionIndex-1].ans[answerIndex-1];
     return `
     <div id="wrongFeedbackContainer">
         <form id="wrongFeedbackForm">
             <span id="wrongFeedbackText">Wrong answer</span>
-            <span>The correct answer was</span>
+            <span id="showCorrectAnswerText">The correct answer was ${correctAnswerText}</span>
             <img id="wrongFeedbackImage" src="https://media.giphy.com/media/iZCd5DtKEiMq4/giphy.gif" alt="tumbling Wario in defeat">
             <button class="continueButton">Continue</button>
         </form>
@@ -198,11 +152,22 @@ function correctAnswerTemplate() {
     `
 }
 
+function finalScoreTemplate() {
+    return `
+    <div id="correctFeedbackContainer">
+        <form id="correctFeedbackForm">
+            <span id="correctFeedbackText">Your Final Score Was ${score}/10 </span>
+            <img id="correctFeedbackImage" src="https://media.giphy.com/media/E73bJJSMHMRsQ/giphy.gif" alt="Duck Hunt dog laughing at you">
+            <button type="submit" class="restartButton">Restart quiz</button>
+        </form>
+    </div>
+    `
+}
+
 ////this function will handle the submit answer button being activated////
 function handleSubmitAnswerButton() {
     $('.questionAndAnswersContainer').on('submit', 'form', function submitButtonClicked(event) {
         event.preventDefault();
-        /*console.log("submit button clicked");*/
         $('.questionAndAnswersContainer').hide();
         const submittedAnswer = $('input:checked').closest('label').index();
         console.log(submittedAnswer);
@@ -212,7 +177,7 @@ function handleSubmitAnswerButton() {
 
 ////here we will check if the answer is correct////
 function checkIfCorrectOrWrong(answer, compareValues) {
-    if (answer + 1 === compareValues.ans.correct) {
+    if (answer + 1 === compareValues.ans[4]) {
         score ++;
         questionIndex ++;
         correctAnswerFeedback();
@@ -228,9 +193,13 @@ function handleNextButton() {
     $('#mainContainer').on('click', '.continueButton', function nextButtonClicked(event) {
         event.preventDefault();
         console.log("Button Next Clicked");
+        if (questionIndex < 10) {
         renderQuestionAndAnswers();
         $('.feedbackContainer').hide();
         $('.questionAndAnswersContainer').css('display','flex');
+        } else {
+            handleFinalScore();
+        }  
     });
 }
 
@@ -245,15 +214,15 @@ function correctAnswerFeedback() {
 }
 
 ////with this we will handle the score after submiting the answer////
-function handleScore() {
-    
+function handleFinalScore() {
+    $('.feedbackContainer').hide();
+    $('.feedbackContainer').show().html(finalScoreTemplate);
 }
 
 function initQuizApp() {
     showQuestionsScreen();
     handleSubmitAnswerButton();
     handleNextButton();
-    handleScore();
 }
 
 $(initQuizApp);
