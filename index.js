@@ -1,7 +1,6 @@
-///We define the global variable that will hold the question index///
+///We define the global variable that will hold the question index and the score///
 
 var questionIndex = 0;
-var questionNumber = 1;
 var score = 0;
 
 //When the start button is clicked we remove the initial section to start the quiz and //
@@ -17,7 +16,7 @@ function showQuestionsScreen() {
 });
 }
 
-///this is the array of objects containing the questions ///
+///this is the array of objects containing the questions and answers///
 const questionsAnswers = [
     {
         toRespond:`What video game is widely considered the worst video game of all times and partially credited as
@@ -153,6 +152,7 @@ function correctAnswerTemplate() {
     `
 }
 
+////html template for the good final score display////
 function goodFinalScoreTemplate() {
     return `
     <div id="correctFeedbackContainer">
@@ -165,6 +165,8 @@ function goodFinalScoreTemplate() {
     `
 }
 
+
+////html template for the bad final score display////
 function badFinalScoreTemplate() {
     return `
     <div id="correctFeedbackContainer">
@@ -177,6 +179,7 @@ function badFinalScoreTemplate() {
     `
 }
 
+////this is the html template for the score and question number to be inserted in the banner////
 function scoreAndQuestionBannerTemplate() {
     return `<span class="displayQuestionInBanner">Question ${questionIndex+1}/10</span>
     <span class="displayScoreInBanner">Score ${score}/10</span>`
@@ -190,10 +193,10 @@ function handleSubmitAnswerButton() {
         const submittedAnswer = $('input:checked').closest('label').index();
         console.log(submittedAnswer);
         checkIfCorrectOrWrong(submittedAnswer, questionsAnswers[questionIndex]);
-        if ($(window).width() > 499) {
-            $('.displayQuestionInBody').hide();
-            $('.displayScoreInBody').hide();
-            renderScoreAndQuestionBanner();
+        if (questionIndex < 10) {
+        renderScoreAndQuestionBanner();
+        } else {
+            $('.scoreAndQuestionBannerDisplay').hide();
         }
         });
 }
@@ -222,13 +225,13 @@ function handleNextButton() {
         $('.questionAndAnswersContainer').css('display','flex');
         } else {
             handleFinalScore();
+            $(`.scoreAndQuestionBannerDisplay`).hide();
         }  
     });
 }
 
 ///Here we will render the score and quesiton number in the banner ///
 function renderScoreAndQuestionBanner() {
-    /*$(`.scoreAndQuestionBannerDisplay`).show();*/
     $(`.scoreAndQuestionBannerDisplay`).html(scoreAndQuestionBannerTemplate);
 }
 
@@ -252,6 +255,7 @@ function handleFinalScore() {
     }
 }
 
+////finally we call the functions that we need on start up////
 function initQuizApp() {
     showQuestionsScreen();
     handleSubmitAnswerButton();

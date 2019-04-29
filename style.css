@@ -15,6 +15,8 @@ body {
   max-width: 215px;
 }
 
+/* Everything on the banner*/
+
 .header {
   display: flex;
 }
@@ -46,6 +48,8 @@ body {
   margin-bottom: 15px;
 }
 
+/*This is for the initial container before the quiz starts*/
+
 .beginQuiz {
     display: flex;
     position: relative;
@@ -72,6 +76,7 @@ body {
     font-size: 60%;
 }
 
+/*Here we have the rules for the container that appears after the quiz starts*/
 .questionAndAnswersContainer {
     display: none;
     align-items: center;
@@ -141,6 +146,8 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
+
+  /*Here we have the rules for the score, question number and feedback */
 
   .scoreAndQuestionNumberDisplay {
     display: flex;
@@ -232,6 +239,8 @@ body {
     justify-content: center;
   }
 
+  /**Here we apply some effects to the form to make it easier to identify the users choice*/
+
   label:hover, label:focus {
     background-color: rgb(0, 255, 127);
     color: black;
@@ -256,7 +265,7 @@ body {
     appearance: none;
   }
 
-  /*this are the rules applied to tablet screens*/ 
+  /*these are the rules applied to tablet screens*/ 
   @media screen and (min-width: 500px) {
 
     .bannerMobile {
@@ -275,7 +284,7 @@ body {
     }
 
   }
-  /*this are the rules applied to desktop screens*/
+  /*these are the rules applied to desktop screens*/
   @media screen and (min-width: 1024px) {
     .displayQuestionInBody {
       display: none;
