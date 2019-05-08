@@ -2,6 +2,7 @@
 
 var questionIndex = 0;
 var score = 0;
+var generatedQuestions = "";
 
 //When the start button is clicked we remove the initial section to start the quiz and //
 //we show the section containing the questions//
@@ -18,6 +19,7 @@ function startQuiz() {
     $('.questionAndAnswersContainer').show();
     renderQuestionAndAnswers();
     renderScoreAndQuestionBanner(); 
+    /*generateQuestionsLoop();*/
 }
 
 ///this is the array of objects containing the questions and answers///
@@ -87,7 +89,7 @@ const questionsAnswers = [
 
 ///Here we render the questions ///
 function renderQuestionAndAnswers() {
-    $('.questionAndAnswersContainer').html(questionTemplate(questionsAnswers[questionIndex]));  
+    $('.questionAndAnswersContainer').html(questionTemplate(questionsAnswers[questionIndex]));
 }
 
 ///this is the html inserted for the mobile version of the quiz///
@@ -99,23 +101,7 @@ function questionTemplate(question) {
                 <span class="questionText">${question.toRespond}</span>
             </div>    
                 <fieldset class="answersContainer">
-                    <label class="answerBox">
-                        <input class="answers" type="radio" name="answer" required>
-                        <span>${question.answers[0]}</span>
-                    </label>
-                    <label class="answerBox">
-                        <input class="answers" type="radio" name="answer" required>
-                        <span>${question.answers[1]}</span>
-                    </label>
-                    <label class="answerBox">
-                        <input class="answers" type="radio" name="answer" required>
-                        <span>${question.answers[2]}</span>
-                    </label>
-                    <label class="answerBox">
-                        <input class="answers" type="radio" name="answer" required>
-                        <span>${question.answers[3]}</span>
-                    </label>
-
+                    ${generatedQuestions}
                      <button type="submit" class="submitAnswerButton">Submit</button>
 
                     <div class="scoreAndQuestionNumberDisplay">
@@ -126,6 +112,16 @@ function questionTemplate(question) {
             </form>
     </div>
 `;
+}
+
+function generateQuestionsLoop() {
+    generatedQuestions = "";
+    for (i=0; i<4; i++) {
+    generatedQuestions +=`<label class="answerBox">
+        <input class="answers" type="radio" name="answer" required>
+        <span>${questionsAnswers[questionIndex].answers[i]}</span>
+    </label>`
+    }
 }
 
 ////this function will handle the HTML inserted for the wrong answer feedback////
@@ -236,6 +232,7 @@ function nextQuestion() {
     $('.feedbackContainer').hide();
     $('.questionAndAnswersContainer').css('display','flex');
     renderScoreAndQuestionBanner();
+    generateQuestionsLoop();
     /*if (window.innerWidth > 1023) {*/ 
        /* $('.scoreAndQuestionBannerDisplay').show(); */
     /*}*/
@@ -273,6 +270,7 @@ function handleRestartButton() {
         questionIndex = 0;
         score = 0;
         nextQuestion();
+        generateQuestionsLoop();
         if (window.innerWidth > 1023) {
             $('.scoreAndQuestionBannerDisplay').show();
          }
@@ -285,8 +283,27 @@ function initQuizApp() {
     handleSubmitAnswerButton();
     handleNextButton();
     handleRestartButton();
+    generateQuestionsLoop();
     
     
 }
 
 $(initQuizApp);
+
+/*
+    <label class="answerBox">
+        <input class="answers" type="radio" name="answer" required>
+        <span>${question.answers[0]}</span>
+    </label>
+    <label class="answerBox">
+        <input class="answers" type="radio" name="answer" required>
+        <span>${question.answers[1]}</span>
+    </label>
+    <label class="answerBox">
+        <input class="answers" type="radio" name="answer" required>
+        <span>${question.answers[2]}</span>
+    </label>
+    <label class="answerBox">
+        <input class="answers" type="radio" name="answer" required>
+        <span>${question.answers[3]}</span>
+    </label> */

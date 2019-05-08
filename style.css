@@ -38,15 +38,18 @@ body {
 
 .bannerIcon {
   display: none;
+  border: solid 2px rgb(0, 255, 127);
 }
 
 .scoreAndQuestionBannerDisplay {
   display: none;
+  color: rgb(0, 255, 127);
 }
 
 .tittle {
   margin-top: 10px;
   margin-bottom: 15px;
+  color: rgb(0, 255, 127);
 }
 
 /*This is for the initial container before the quiz starts*/
